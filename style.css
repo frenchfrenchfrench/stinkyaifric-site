@@ -93,6 +93,16 @@ main {
   transition: transform 300ms ease;
 }
 
+/* Wide banners: show the whole picture on white instead of cropping the sides. */
+.card-image.fit {
+  background: #fff;
+}
+
+.card-image.fit img {
+  object-fit: contain;
+  object-position: center;
+}
+
 /* Keep the Krillion title and boat in view when cropped. */
 .card-image img.krillion-image {
   object-position: center 40%;
