@@ -4,20 +4,51 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#12141f" />
-    <title>stinkyaifric</title>
+    <title>stinkyaifric.ie</title>
+    <meta name="description" content="Quiz games I play with friends." />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <!-- Animated background (see swirl.js) -->
     <canvas id="background" aria-hidden="true"></canvas>
 
-    <main>
-      <h1>stinkyaifric</h1>
+    <header>
+      <h1>stinkyaifric.ie</h1>
+    </header>
 
-      <nav class="links">
-        <!-- To add another project later, copy this <a> line and change the address and name. -->
-        <a class="button" href="https://quiz.stinkyaifric.ie">QuizQuiz</a>
-      </nav>
+    <main>
+      <!--
+        Each <article class="card"> is one game. To add another game, copy a whole
+        <article> ... </article> block and change the picture, title, text and link.
+      -->
+      <div class="cards">
+        <article class="card">
+          <a class="card-image" href="https://quizquiz.pages.dev" tabindex="-1" aria-hidden="true">
+            <img src="images/quiz-night.jpg" alt="" width="390" height="640" />
+          </a>
+          <div class="card-body">
+            <h2>Quiz Night</h2>
+            <p>
+              Our own live quiz. The host runs it from their laptop and everyone plays on their phone: join with a
+              4-letter code, answer within 15 seconds, and the fastest correct answers win bonus points.
+            </p>            <a class="button" href="https://quizquiz.pages.dev">Play Quiz Night</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="card-image" href="https://krillion.io" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <img class="krillion-image" src="images/krillion.webp" alt="" width="1280" height="720" />
+          </a>
+          <div class="card-body">
+            <h2>Krillion</h2>
+            <p>
+              Seven prompts a day, same for everyone. Rare answers sink you deeper. Obvious ones barely count. One in a
+              krillion.
+            </p>
+            <a class="button secondary" href="https://krillion.io" target="_blank" rel="noopener">Play Krillion ↗</a>
+          </div>
+        </article>
+      </div>
     </main>
 
     <script src="swirl.js"></script>

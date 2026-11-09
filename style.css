@@ -1,8 +1,13 @@
 :root {
   --text: #f6f3ea;
+  --muted: #c3bfd2;
+  --surface: rgba(16, 18, 30, 0.86);
+  --border: rgba(255, 255, 255, 0.14);
   --accent: #f5b83d;
   --accent-text: #241800;
   --accent-shadow: #a8741a;
+  --blue: #3f7fe0;
+  --blue-shadow: #244c8f;
   color-scheme: dark;
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
@@ -28,57 +33,139 @@ body {
   image-rendering: pixelated;
 }
 
-main {
-  min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  padding: 24px 16px;
+/* ---------- Title ---------- */
+
+header {
+  padding: max(32px, env(safe-area-inset-top)) 16px 8px;
   text-align: center;
 }
 
 h1 {
   margin: 0;
-  font-size: clamp(2.4rem, 10vw, 5rem);
+  font-size: clamp(2.2rem, 8vw, 4.5rem);
   font-weight: 900;
   color: var(--accent);
   text-shadow: 0 6px 0 #000a, 0 0 24px #0009;
   overflow-wrap: anywhere;
 }
 
-.links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
+/* ---------- Game cards ---------- */
+
+main {
+  padding: 24px 16px max(40px, env(safe-area-inset-bottom));
 }
 
+.cards {
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 0 #0007;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.card-image {
+  display: block;
+  aspect-ratio: 13 / 10;
+  overflow: hidden;
+  background: #0b0d18;
+  border-bottom: 2px solid var(--border);
+}
+
+.card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* crops the picture to fill the box */
+  object-position: top;
+  transition: transform 300ms ease;
+}
+
+/* Keep the Krillion title and boat in view when cropped. */
+.card-image img.krillion-image {
+  object-position: center 40%;
+}
+
+.card:hover .card-image img {
+  transform: scale(1.03);
+}
+
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+.card-body p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ---------- Buttons ---------- */
+
 .button {
-  display: inline-block;
-  min-width: 200px;
-  padding: 18px 28px;
-  border-radius: 14px;
+  margin-top: auto; /* keeps buttons lined up at the bottom of each card */
+  display: block;
+  padding: 16px;
+  border-radius: 12px;
   background: var(--accent);
   color: var(--accent-text);
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 800;
+  text-align: center;
   text-decoration: none;
-  box-shadow: 0 6px 0 var(--accent-shadow);
+  box-shadow: 0 5px 0 var(--accent-shadow);
   transition: transform 80ms, box-shadow 80ms;
 }
 
+.button.secondary {
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 5px 0 var(--blue-shadow);
+}
+
 .button:hover {
-  filter: brightness(1.06);
+  filter: brightness(1.07);
 }
 
 .button:active {
-  transform: translateY(5px);
+  transform: translateY(4px);
   box-shadow: 0 1px 0 var(--accent-shadow);
+}
+
+.button.secondary:active {
+  box-shadow: 0 1px 0 var(--blue-shadow);
 }
 
 .button:focus-visible {
   outline: 3px solid #fff;
   outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-image img,
+  .button {
+    transition: none;
+  }
 }
