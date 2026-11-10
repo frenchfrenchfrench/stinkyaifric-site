@@ -12,9 +12,56 @@
     <!-- Animated background (see swirl.js) -->
     <canvas id="background" aria-hidden="true"></canvas>
 
-    <header>
-      <h1>stinkyaifric.ie</h1>
-    </header>
+    <div class="hero">
+      <div class="hero-left">
+        <header>
+          <h1>stinkyaifric.ie</h1>
+        </header>
+
+        <!-- Today's date + "Florida man", refreshed at midnight GMT (see florida.js and functions/florida-man.js) -->
+        <section class="florida" aria-labelledby="florida-label">
+          <p id="florida-label" class="florida-label">Florida Man of the day</p>
+          <p class="florida-search">
+            <span class="florida-g" aria-hidden="true">G</span>
+            <span id="florida-query">Today + "Florida man"</span>
+          </p>
+          <div id="florida-result" class="florida-result">
+            <p class="florida-loading">Searching for Florida Man…</p>
+          </div>
+        </section>
+      </div>
+
+      <!-- audidiot: random album picker (see audidiot.js and albums.js) -->
+      <section class="audidiot" aria-labelledby="aud-title">
+        <h2 id="aud-title" class="aud-title">audidiot</h2>
+        <div class="aud-body">
+          <div class="wheel-wrap">
+            <div class="wheel-pointer" aria-hidden="true"></div>
+            <svg id="wheel" viewBox="-100 -100 200 200" role="img" aria-label="Album wheel"></svg>
+          </div>
+          <div class="aud-panel" aria-live="polite">
+            <div id="aud-picker" class="aud-picker">
+              <p class="aud-intro">Can't decide what to listen to? Pick a genre and/or decade and let the wheel choose.</p>
+              <label>
+                Genre
+                <select id="aud-genre">
+                  <option value="">Any: all-time greats</option>
+                </select>
+              </label>
+              <label>
+                Decade
+                <select id="aud-decade">
+                  <option value="">Any decade</option>
+                </select>
+              </label>
+              <p id="aud-count" class="aud-count"></p>
+              <button id="aud-spin" class="aud-button" type="button">Spin</button>
+            </div>
+            <div id="aud-result" class="aud-result" hidden></div>
+          </div>
+        </div>
+      </section>
+    </div>
 
     <main>
       <!--
@@ -187,6 +234,20 @@
       </div>
     </main>
 
+    <!-- The small print. Both links are, of course, a rickroll. -->
+    <footer class="smallprint">
+      <p>
+        For recommendations of games to add, respond here:
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener">stinkyaifric.ie/suggestions</a>
+        <span class="dot" aria-hidden="true">·</span>
+        Like the website? Find more of my work here:
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener">stinkyaifric.ie/portfolio</a>
+      </p>
+    </footer>
+
     <script src="swirl.js"></script>
+    <script src="florida.js"></script>
+    <script src="albums.js"></script>
+    <script src="audidiot.js"></script>
   </body>
 </html>
