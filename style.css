@@ -48,7 +48,7 @@ body {
 }
 
 header {
-  text-align: left;
+  text-align: center;
 }
 
 /* The title with the Florida Man card under it, no taller than audidiot beside it. */
@@ -56,9 +56,32 @@ header {
   align-self: stretch;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 24px;
   min-width: 0;
+}
+
+/* Wide screens: the card fills down to the bottom of audidiot, so both columns line up. */
+@media (min-width: 901px) {
+  .hero {
+    align-items: stretch;
+    min-height: 0;
+    padding-top: max(40px, env(safe-area-inset-top));
+  }
+
+  .florida {
+    flex: 1;
+  }
+
+  .florida-result {
+    flex: 1;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .florida .florida-headline {
+    font-size: clamp(1.25rem, 1.9vw, 1.6rem);
+    -webkit-line-clamp: 6;
+  }
 }
 
 /* ---------- Florida Man of the day ---------- */
