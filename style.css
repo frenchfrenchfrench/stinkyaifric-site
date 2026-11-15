@@ -319,6 +319,69 @@ h2 {
   line-height: 1.5;
 }
 
+/* ---------- Daily puzzle status (see daily.js) ---------- */
+
+.daily {
+  margin-top: auto; /* sits just above the Play button, lined up across cards */
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 2px 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 0.85rem;
+}
+
+.daily + .button {
+  margin-top: 0;
+}
+
+.daily-state {
+  font-weight: 700;
+}
+
+.daily[data-state='played'] {
+  border-color: rgba(92, 214, 128, 0.55);
+  background: rgba(92, 214, 128, 0.1);
+}
+
+.daily[data-state='played'] .daily-state {
+  color: #7be39a;
+}
+
+.daily[data-state='todo'] .daily-state {
+  color: var(--accent);
+}
+
+.daily-timer {
+  grid-column: 1;
+  color: var(--muted);
+}
+
+.daily-toggle {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.daily-toggle:hover {
+  border-color: var(--muted);
+}
+
+.daily-toggle:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
 /* ---------- Buttons ---------- */
 
 .button {
