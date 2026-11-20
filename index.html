@@ -15,13 +15,15 @@
     <link rel="manifest" href="/site.webmanifest" />
     <!-- Bump the ?v= number (here and on the scripts below) after changing style.css or a .js file,
          so browsers fetch the new version instead of an old saved copy. -->
-    <link rel="stylesheet" href="style.css?v=20261115" />
+    <link rel="stylesheet" href="style.css?v=20261120b" />
   </head>
   <body>
     <!-- Animated background (see swirl.js) -->
     <canvas id="background" aria-hidden="true"></canvas>
 
-    <div class="hero">
+    <!-- "collapsed" shrinks Florida Man and audidiot to their title bars; the "Show" buttons open
+         both together (see tiles.js). Delete the word to have them start open. -->
+    <div class="hero collapsed" id="hero">
       <div class="hero-left">
         <header>
           <h1>stinkyaifric.ie</h1>
@@ -29,7 +31,10 @@
 
         <!-- Today's date + "Florida man", refreshed at midnight GMT (see florida.js and functions/florida-man.js) -->
         <section class="florida" aria-labelledby="florida-label">
-          <p id="florida-label" class="florida-label">Florida Man of the day</p>
+          <div class="tile-head">
+            <p id="florida-label" class="florida-label">Florida Man of the day</p>
+            <button class="tile-toggle" type="button" aria-expanded="false" aria-controls="hero">Show</button>
+          </div>
           <p class="florida-search">
             <span class="florida-g" aria-hidden="true">G</span>
             <span id="florida-query">Today + "Florida man"</span>
@@ -42,7 +47,10 @@
 
       <!-- audidiot: random album picker (see audidiot.js and albums.js) -->
       <section class="audidiot" aria-labelledby="aud-title">
-        <h2 id="aud-title" class="aud-title">audidiot</h2>
+        <div class="tile-head aud-head">
+          <h2 id="aud-title" class="aud-title">audidiot</h2>
+          <button class="tile-toggle" type="button" aria-expanded="false" aria-controls="hero">Show</button>
+        </div>
         <div class="aud-body">
           <div class="wheel-wrap">
             <div class="wheel-pointer" aria-hidden="true"></div>
@@ -78,19 +86,6 @@
         <article> ... </article> block and change the picture, title, text and link.
       -->
       <div class="cards">
-        <article class="card">
-          <a class="card-image" href="https://quiz.stinkyaifric.ie" tabindex="-1" aria-hidden="true">
-            <img src="images/quiz-night.jpg" alt="" width="390" height="640" />
-          </a>
-          <div class="card-body">
-            <h2>Quiz Night</h2>
-            <p>
-              Our own live quiz. The host runs it from their laptop and everyone plays on their phone: join with a
-              4-letter code, answer within 15 seconds, and the fastest correct answers win bonus points.
-            </p>            <a class="button" href="https://quiz.stinkyaifric.ie">Play Quiz Night</a>
-          </div>
-        </article>
-
         <article class="card" data-daily="krillion">
           <a class="card-image" href="https://krillion.io" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
             <img class="krillion-image" src="images/krillion.webp" alt="" width="1280" height="720" />
@@ -119,17 +114,41 @@
           </div>
         </article>
 
-        <article class="card" data-daily="noillirk">
-          <a class="card-image" href="https://noillirk.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-            <img src="images/noillirk.webp" alt="" width="1200" height="557" style="object-position: center 30%" />
+        <article class="card" data-daily="boreen">
+          <a class="card-image" href="https://boreen.ie/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <img src="images/boreen.webp" alt="" width="1200" height="630" style="object-position: right center" />
           </a>
           <div class="card-body">
-            <h2>Noillirk</h2>
+            <h2>Boreen</h2>
             <p>
-              Guess the answer most people give. Think like everyone: name what most people would say and pull the
-              crowd your way.
+              The Irish Krillion: each question has lots of right answers. Give one that few other people will think
+              of. The rarer it is, the further you travel.
             </p>
-            <a class="button secondary" href="https://noillirk.com/" target="_blank" rel="noopener">Play Noillirk ↗</a>
+            <a class="button secondary" href="https://boreen.ie/" target="_blank" rel="noopener">Play Boreen ↗</a>
+          </div>
+        </article>
+
+        <article class="card" data-daily="eraly">
+          <a class="card-image" href="https://eraly.cc/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <img src="images/eraly.webp" alt="" width="1200" height="1200" style="object-position: center top" />
+          </a>
+          <div class="card-body">
+            <h2>Eraly</h2>
+            <p>A free daily history game: you see a moment from history and guess the year it happened.</p>
+            <a class="button secondary" href="https://eraly.cc/" target="_blank" rel="noopener">Play Eraly ↗</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="card-image" href="https://quiz.stinkyaifric.ie" tabindex="-1" aria-hidden="true">
+            <img src="images/quiz-night.jpg" alt="" width="390" height="640" />
+          </a>
+          <div class="card-body">
+            <h2>Quiz Night</h2>
+            <p>
+              Our own live quiz. The host runs it from their laptop and everyone plays on their phone: join with a
+              4-letter code, answer within 15 seconds, and the fastest correct answers win bonus points.
+            </p>            <a class="button" href="https://quiz.stinkyaifric.ie">Play Quiz Night</a>
           </div>
         </article>
 
@@ -147,28 +166,17 @@
           </div>
         </article>
 
-        <article class="card" data-daily="eraly">
-          <a class="card-image" href="https://eraly.cc/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-            <img src="images/eraly.webp" alt="" width="1200" height="1200" style="object-position: center top" />
+        <article class="card" data-daily="noillirk">
+          <a class="card-image" href="https://noillirk.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <img src="images/noillirk.webp" alt="" width="1200" height="557" style="object-position: center 30%" />
           </a>
           <div class="card-body">
-            <h2>Eraly</h2>
-            <p>A free daily history game: you see a moment from history and guess the year it happened.</p>
-            <a class="button secondary" href="https://eraly.cc/" target="_blank" rel="noopener">Play Eraly ↗</a>
-          </div>
-        </article>
-
-        <article class="card" data-daily="boreen">
-          <a class="card-image" href="https://boreen.ie/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-            <img src="images/boreen.webp" alt="" width="1200" height="630" style="object-position: right center" />
-          </a>
-          <div class="card-body">
-            <h2>Boreen</h2>
+            <h2>Noillirk</h2>
             <p>
-              The Irish Krillion: each question has lots of right answers. Give one that few other people will think
-              of. The rarer it is, the further you travel.
+              Guess the answer most people give. Think like everyone: name what most people would say and pull the
+              crowd your way.
             </p>
-            <a class="button secondary" href="https://boreen.ie/" target="_blank" rel="noopener">Play Boreen ↗</a>
+            <a class="button secondary" href="https://noillirk.com/" target="_blank" rel="noopener">Play Noillirk ↗</a>
           </div>
         </article>
 
@@ -377,6 +385,7 @@
     <script src="swirl.js?v=20261115"></script>
     <script src="florida.js?v=20261115"></script>
     <script src="albums.js?v=20261115"></script>
+    <script src="tiles.js?v=20261120"></script>
     <script src="audidiot.js?v=20261115"></script>
     <script src="daily.js?v=20261115b"></script>
   </body>

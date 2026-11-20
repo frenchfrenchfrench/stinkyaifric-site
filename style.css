@@ -223,7 +223,7 @@ main {
   padding: 24px 16px 32px;
 }
 
-/* Four tiles per row on laptops, then 3, 2 and 1 as the screen gets narrower. */
+/* Four tiles per row on laptops, then 3, then 2 on tablets and phones (smaller tiles on phones, see below). */
 .cards {
   max-width: 1240px;
   margin: 0 auto;
@@ -242,12 +242,6 @@ main {
 @media (max-width: 820px) {
   .cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 560px) {
-  .cards {
-    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -421,6 +415,63 @@ h2 {
 .button:focus-visible {
   outline: 3px solid #fff;
   outline-offset: 4px;
+}
+
+/* ---------- Phones: two smaller tiles per row ---------- */
+
+/* Tighter spacing and smaller text, the description cut to 3 lines, and the daily status stacked. */
+@media (max-width: 560px) {
+  .cards {
+    gap: 12px;
+  }
+
+  .card {
+    border-radius: 16px;
+  }
+
+  .card-image {
+    aspect-ratio: 4 / 3;
+  }
+
+  .card-body {
+    gap: 8px;
+    padding: 10px 10px 12px;
+  }
+
+  .card-body h2 {
+    font-size: 1.1rem;
+    overflow-wrap: anywhere;
+  }
+
+  .card-body p {
+    font-size: 0.8rem;
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .daily {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1px;
+    padding: 6px 8px;
+    font-size: 0.72rem;
+  }
+
+  .daily-toggle {
+    grid-column: 1;
+    grid-row: auto;
+    margin-top: 5px;
+    padding: 4px 6px;
+    font-size: 0.72rem;
+  }
+
+  .button {
+    padding: 9px 6px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -725,6 +776,112 @@ h2 {
   font-size: 1.2rem;
   font-weight: 900;
   color: var(--lum);
+}
+
+/* ---------- Opening and closing the top tiles (see tiles.js) ---------- */
+
+.tile-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tile-toggle {
+  flex: none;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1.5px solid currentColor;
+  background: transparent;
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tile-toggle::after {
+  content: ' ▾';
+}
+
+.tile-toggle[aria-expanded='true']::after {
+  content: ' ▴';
+}
+
+.tile-toggle:hover {
+  filter: brightness(1.15);
+}
+
+.tile-toggle:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+/* audidiot keeps its title centred, with the button at the right. */
+.aud-head {
+  position: relative;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.aud-head .aud-title {
+  margin: 0;
+}
+
+.aud-head .tile-toggle {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--lum);
+}
+
+/* Phones: no room to centre the title, so line it up like the Florida Man bar. */
+@media (max-width: 640px) {
+  .aud-head {
+    justify-content: space-between;
+  }
+
+  .aud-head .tile-toggle {
+    position: static;
+    transform: none;
+  }
+}
+
+/* Closed: Florida Man is just its title bar... */
+.hero.collapsed .florida {
+  flex: none;
+}
+
+.hero.collapsed .florida-search,
+.hero.collapsed .florida-result {
+  display: none;
+}
+
+/* ...and audidiot is its title and the Spin button. */
+.hero.collapsed .audidiot {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero.collapsed .aud-body {
+  display: block;
+}
+
+.hero.collapsed .wheel-wrap,
+.hero.collapsed .aud-picker > :not(#aud-spin),
+.hero.collapsed .aud-result {
+  display: none;
+}
+
+.hero.collapsed .aud-picker {
+  display: flex; /* even when a picked album was showing */
+  align-items: center;
+}
+
+.hero.collapsed #aud-spin {
+  width: min(100%, 320px);
 }
 
 @keyframes aud-pop {
